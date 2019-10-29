@@ -18,8 +18,28 @@
 *
 */
 
-var rockPaperScissors = function (
-) {
-  // TODO: your solution here
+var rockPaperScissors = function () {
+  var result = [];
+  var throws = ['R', 'P', 'S'];
+  //for first character in the three-character string
+  var currentArr = [];
+  for (var i = 0; i < throws.length; i++) {
+    currentArr[0] = throws[i];
+    //rock, paper, or scissors
+    //for second character
+    for (var j = 0; j < throws.length; j++) {
+      //rock, paper, or scissors
+      currentArr[1] = throws[j];
+      //for third character
+      for (var k = 0; k < throws.length; k++) {
+        //rock, paper, scissors
+        currentArr[2] = throws[k];
+        result.push(currentArr.join(''));
+      }
+    }
+  }
+  return result;
 };
+
+// console.log(rockPaperScissors());
 
