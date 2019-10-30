@@ -11,5 +11,29 @@
 */
 
 var evenOccurrence = function(arr) {
-  // Your code here.
+  // counts = {};
+  // for each element in array
+    // if counts does not have a key
+      // add the value to the object
+    // else
+      // increment the value
+  // once the counting is complete
+  // iterate over the counts object
+    // if the value is even, return the key
+  // return null
+
+  var counts = {};
+  arr.forEach(function(item) {
+    if (counts.hasOwnProperty(item)) {
+      counts[item]++;
+    } else {
+      counts[item] = 1;
+    }
+  });
+  for (var key in counts) {
+    if (counts[key] % 2 === 0) {
+      return key;
+    }
+  }
+  return null;
 };
