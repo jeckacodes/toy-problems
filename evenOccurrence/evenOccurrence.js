@@ -30,10 +30,10 @@ var evenOccurrence = function(arr) {
       counts[item] = 1;
     }
   });
-  for (var key in counts) {
-    if (counts[key] % 2 === 0) {
-      return key;
+  for (var i = 0; i < arr.length; i++) {
+    if (counts[arr[i]] % 2 === 0) {
+      return arr[i];
     }
-  }
+  };
   return null;
 };
