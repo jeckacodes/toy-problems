@@ -27,7 +27,7 @@
 // add an item to the top of the stack
   Stack.prototype.push = function(value) {
     this.storage.push(value);
-    if (value < this.minimum[this.minimum.length - 1]) {
+    if (value <= this.minimum[this.minimum.length - 1]) {
       this.minimum.push(value);
     }
   };
