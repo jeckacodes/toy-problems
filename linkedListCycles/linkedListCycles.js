@@ -32,9 +32,16 @@
  */
 
 var Node = function(value) {
-  return { value: value, next: null };
+  return { value: value, next: null, visited: false };
 };
 
-var hasCycle = function(linkedList) {
-  // TODO: implement me!
+var hasCycle = function(linkedList, prevLength) {
+  if (linkedList.next === null) {
+    return false;
+  } else if (linkedList.visited === false) {
+    linkedList.visited = true;
+    return hasCycle(linkedList.next);
+  } else if (linkedList.visited === true) {
+    return true;
+  }
 };
