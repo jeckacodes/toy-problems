@@ -36,12 +36,25 @@ var Node = function(value) {
 };
 
 var hasCycle = function(linkedList, prevLength) {
-  if (linkedList.next === null) {
-    return false;
-  } else if (linkedList.visited === false) {
-    linkedList.visited = true;
-    return hasCycle(linkedList.next);
-  } else if (linkedList.visited === true) {
-    return true;
+  // Recursive solution - not constant space
+  // if (linkedList.next === null) {
+  //   return false;
+  // } else if (linkedList.visited === false) {
+  //   linkedList.visited = true;
+  //   return hasCycle(linkedList.next);
+  // } else if (linkedList.visited === true) {
+  //   return true;
+  // }
+
+  var currentNode = linkedList;
+  while (currentNode.next !== null) {
+    if (currentNode.visited === true) {
+      return true;
+    } else if (currentNode.visited === false) {
+      currentNode.visited = true;
+    }
+    currentNode = currentNode.next;
   }
+  return false;
+
 };
