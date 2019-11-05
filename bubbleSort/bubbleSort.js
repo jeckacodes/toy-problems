@@ -34,5 +34,27 @@
 
 
 var bubbleSort = function(array) {
-  // Your code here.
+  // iterate through the array, probably on a while condition
+  // var stopCondition = true;
+  // basic comparison:
+  //  if ith ele > i+1th ele
+  //    swap them
+  // .  stopCondition = false;
+
+  // if stopCondition = true
+  // . return array;
+  var stopCondition = false;
+  while (stopCondition === false) {
+    stopCondition = true; // reset stopCondition for every loop thru array
+    for (var i = 0; i < array.length - 1; i++) {
+      if (array[i] > array[i + 1]) {
+        stopCondition = false;
+        // swap them
+        var x = array[i];
+        array[i] = array[i + 1];
+        array[i + 1] = x;
+      }
+    }
+  }
+  return array;
 };
