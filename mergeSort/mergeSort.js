@@ -98,5 +98,33 @@
 
 
 var mergeSort = function(array) {
-  // Your code here.
+  // split input array in half
+  var pivot = Math.floor(array.length/2);
+  var lowArr = array.slice(0, pivot);
+  var upArr = array.slice(pivot);
+  // sort both sides recursively
+  if (lowArr.length > 1) {
+    lowArr = mergeSort(lowArr);
+  }
+  if (upArr.length > 1) {
+    upArr = mergeSort(upArr);
+  }
+  // merge both sides using insertion sort
+  for (var i = 0; i < lowArr.length; i++) {
+      var sortee = lowArr[i];
+      var wasInserted = false;
+      for (var j = 0; j < upArr.length; j++) {
+          if (sortee < upArr[j]) {
+              var toss = upArr.splice(j, 0, sortee);
+              wasInserted = true;
+              break;
+          } 
+          
+      }
+      // if sortee wasn't pushed, push it here
+      if (wasInserted === false) {
+        upArr.push(sortee);
+      }
+  }
+  return upArr;
 };
