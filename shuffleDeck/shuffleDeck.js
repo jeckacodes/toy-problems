@@ -32,7 +32,16 @@
  */
 
 var shuffleDeck = function(deck) {
-  // Your code here
+  // for every spot in the deck
+  //    pick a card at random from elsewhere in the deck
+  //    switch those two cards
+  for (var i = 0; i < deck.length; i++) {
+    var switchIndex = Math.floor(Math.random() * deck.length);
+    var placeHolder = deck[i];
+    deck[i] = deck[switchIndex];
+    deck[switchIndex] = placeHolder;
+  }
+  return deck;
 };
 
 // Ordered deck generator provided for your testing convenience
