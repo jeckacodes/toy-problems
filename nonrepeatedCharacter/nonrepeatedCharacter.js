@@ -28,5 +28,5 @@ var firstNonRepeatedCharacter = function(string) {
       return string[i];
     }
   }
-  return '';
+  return null;
 };
