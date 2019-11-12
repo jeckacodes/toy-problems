@@ -16,11 +16,12 @@ var firstNonRepeatedCharacter = function(string) {
 
   var counter = {};
   for (var i = 0; i < string.length; i++) {
-    if (counter.hasOwnProperty(string[i])) {
-      counter[string[i]]++;
-    } else {
-      counter[string[i]] = 1;
-    }
+    // if (counter.hasOwnProperty(string[i])) {
+    //   counter[string[i]]++;
+    // } else {
+    //   counter[string[i]] = 1;
+    // }
+    counter[string[i]] = counter[string[i]] + 1 || 1;
   }
   for (var i = 0; i < string.length; i++) {
     if (counter[string[i]] === 1) {
