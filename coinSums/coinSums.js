@@ -52,7 +52,7 @@ var makeChange = function(total) {
             sum -= coin;
         } else if (sum < remaining) {
             var newCoins = coins.slice(coins.indexOf(coin));
-            helper(remaining, coins, sum);
+            helper(remaining, newCoins, sum);
         } else sum -= coin;
       }
     };
