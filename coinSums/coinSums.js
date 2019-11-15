@@ -25,7 +25,41 @@ makeChange(2) === 2
 */
 
 var makeChange = function(total) {
-
-};
+    // we have a list/object with all the pieces
+    // we traverse a tree of all possible combinations of pieces
+    // whenever adding a coin puts us over the limit, we drop that branch
+    // *--optimization: maybe each time we add a coin, we have a smaller list of coins to choose from
+    // i.e. we can only choose from coins that are <= the remaining value
+    // recursive: add a coin, then call makeChange again with the remaining value
+    // here's the catch, though: 50p + 2p is the same as 2p + 50p
+    // supposing we only choose from the array in one direction. i.e. once we've chosen 2p, we can't 
+    // choose anything larger.
+  
+    var coins = [200, 100, 50, 20, 10, 5, 2, 1];
+    var ways = 0;
+  
+    const helper = (remaining, coins, sum) => {
+      for (var coin of coins) {
+        // add coin to sum
+        // if we reach the sum
+        //    increment ways
+        // else if we are under the sum:
+        //   change coins array to only include that coin and smaller coins
+        //   call helper function
+        sum += coin;
+        if (sum === remaining) {
+            ways++;
+            sum -= coin;
+        } else if (sum < remaining) {
+            var newCoins = coins.slice(coins.indexOf(coin));
+            helper(remaining, coins, sum);
+        } else sum -= coin;
+      }
+    };
+  
+    helper(total, coins, 0);
+  
+    return ways;
+  };
 
 
