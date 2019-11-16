@@ -18,4 +18,18 @@
  */
 
 var powerSet = function(str) {
+  var result = [''];
+  // helper function 
+
+  var helper = (currStr, choices) => {
+    for (var char of choices) {
+      currStr += char;
+      result.push(currStr);
+      var newChoices = choices.substring(1);
+      helper(currStr, newChoices);
+    }
+  }
+
+  helper('', str);
+  return result;
 };
