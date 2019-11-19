@@ -36,6 +36,24 @@ var Tree = function(value) {
 };
 
 Tree.prototype.DFSelect = function(filter) {
+  // Depth-first means recursive
+  var results = [];
+
+  var helper = function(node) {
+    //base case:
+    if (filter(node.value)) {
+      results.push(node.value);
+    }
+    // go to next node
+    if (node.children.length > 0) {
+      for (var child of node.children) {
+        helper(child);
+      }
+    }
+  }
+
+  helper(this);
+  return results;
 };
 
 
