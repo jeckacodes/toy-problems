@@ -13,5 +13,15 @@
 
 
 var commonCharacters = function(string1, string2) {
-  // TODO: Your code here!
+  var count = {};
+  var result = '';
+  for (var char of string1) {
+    if (string2.includes(char) && !count.hasOwnProperty(char)) {
+      count[char] = 1;
+      result += char;
+    }
+  }
+  return result;
 };
+
+console.log(commonCharacters('aceixivou', 'aegihobu')); // 'aeiou'
