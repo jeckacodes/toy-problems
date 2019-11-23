@@ -12,11 +12,24 @@
 
 
 
-var commonCharacters = function(string1, string2) {
+var commonCharacters = function(...strings) {
+  // debugger;
+  var string1 = strings[0];
+  strings.splice(0, 1);
   var count = {};
   var result = '';
+
+  var helper = (char, strings) => {
+    for (var string of strings) {
+      if (!string.includes(char)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   for (var char of string1) {
-    if (string2.includes(char) && !count.hasOwnProperty(char)) {
+    if (helper(char, strings) && !count.hasOwnProperty(char)) {
       count[char] = 1;
       result += char;
     }
@@ -24,4 +37,4 @@ var commonCharacters = function(string1, string2) {
   return result;
 };
 
-console.log(commonCharacters('aceixivou', 'aegihobu')); // 'aeiou'
+console.log(commonCharacters('aceixivou', 'aegihobu', 'tulkieoejar')); // 'aeiou'
