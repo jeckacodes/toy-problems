@@ -37,7 +37,9 @@ var compose = function() {
   debugger;
   var args = arguments;
   for (let i = arguments.length - 1; i > 0; i--) {
-      return args[i](args[i - 1]());
+      return function() {
+          return args[i](args[i - 1]());
+      }
   }
 //   args.reduce((prev, curr) => {
 //     return prev.then(curr)
