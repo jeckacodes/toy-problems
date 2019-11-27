@@ -34,7 +34,21 @@
 'use strict';
 
 var compose = function() {
+  debugger;
+  var args = arguments;
+  for (let i = arguments.length - 1; i > 0; i--) {
+      return args[i](args[i - 1]());
+  }
+//   args.reduce((prev, curr) => {
+//     return prev.then(curr)
+//   }, Promise.resolve(args[0]));
 };
 
+var greet = function(name){ return 'hi: ' + name;}
+var exclaim = function(statement) { return statement.toUpperCase() + '!';}
+var welcome = compose(greet, exclaim);
+welcome('phillip'); // 'hi: PHILLIP!'
+
 var pipe = function() {
+  // compose, but the other way around
 };
