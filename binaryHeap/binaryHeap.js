@@ -117,8 +117,8 @@ BinaryHeap.prototype.removeRoot = function () {
 
   let pop = this._heap.pop();
   this._heap[0] = pop;
-  let parentIndex = 0;
-  let childrenIndices = [parentIndex * 2 + 1, parentIndex * 2 + 2];
+  var parentIndex = 0;
+  var childrenIndices = [parentIndex * 2 + 1, parentIndex * 2 + 2];
   debugger;
   var childIndex;
   if (!this._heap[childrenIndices[1]]) {
@@ -127,20 +127,12 @@ BinaryHeap.prototype.removeRoot = function () {
     childIndex = this._compare(this._heap[childrenIndices[0]], this._heap[childrenIndices[1]]) ? childrenIndices[0] : childrenIndices[1];
   }
   while (this._compare(this._heap[childIndex], this._heap[parentIndex])) {
-    let temp = this._heap[childIndex];
+    var temp = this._heap[childIndex];
     this._heap[childIndex] = this._heap[parentIndex];
     this._heap[parentIndex] = temp;
     parentIndex = childIndex;
     childrenIndices = [parentIndex * 2 + 1, parentIndex * 2 + 2];
-    let childIndex = this._compare(childrenIndices[0], childrenIndices[1]) ? childrenIndices[0] : childrenIndices[1];
+    childIndex = this._compare(childrenIndices[0], childrenIndices[1]) ? childrenIndices[0] : childrenIndices[1];
   }
 
 }
-
-// var binaryHeap = new BinaryHeap();
-// binaryHeap.insert(6);
-// binaryHeap.insert(4);
-// binaryHeap.insert(9);
-// binaryHeap.removeRoot();
-
-// console.log(binaryHeap._heap) //.should.equal(6, 9);
