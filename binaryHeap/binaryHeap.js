@@ -38,25 +38,34 @@
  * if it is less than its parent. After a swap it must compare itself to its new parent, continuing
  * until it is no longer less than its parent.
  *
- * Something similar happens when we want to remove the root node. Because we can only remove from the
- * end of the array we swap the position of the last node and the root node and then remove the now-last
- * node from the heap. The new root node now must be compared to its children and if it is not less than
- * both of them, be swapped with whichever of the two of them is the smallest. It is then compared with its
+ * Something similar happens when we want to remove the root node. Because we can only remove 
+ * from the
+ * end of the array we swap the position of the last node and the root node and then remove 
+ * the now-last
+ * node from the heap. The new root node now must be compared to its children and if it is 
+ * not less than
+ * both of them, be swapped with whichever of the two of them is the smallest. It is then 
+ * compared with its
  * new children and this swapping continues until it is less than both its children.
  *
- * You can see a great visualization of a binary min heap in action here, play around with it until you can
+ * You can see a great visualization of a binary min heap in action here, play around with 
+ * it until you can
  * easily guess how the heap will behave with both insertion and removal:
  * https://www.cs.usfca.edu/~galles/visualization/Heap.html
  */
 
 
 // Below is a binary heap whose nodes are integers. Its storage is an array and
-// its `getRoot` method is already written. `BinaryHeap`'s `this._compare` method is hard-coded to return
+// its `getRoot` method is already written. `BinaryHeap`'s `this._compare` method is hard-coded
+// to return
 // whether the fist element passed into it is less than the second. Use it when comparing nodes.
 //
-// Implement the `insert` and `removeRoot` methods, each operating in logarithmic time relative
-// to the size of the heap, and each restoring the heap's property of parent to child sorting. Use
-// the equations above to navigate parent / child relationships in the storage array, and write any
+// Implement the `insert` and `removeRoot` methods, each operating in logarithmic time 
+// relative
+// to the size of the heap, and each restoring the heap's property of parent to child sorting.
+// Use
+// the equations above to navigate parent / child relationships in the storage array, and 
+// write any
 // helper functions needed to assist you.
 //
 // Extra credit: `BinaryHeap`'s `this._compare` is hard-coded to assist in making a min heap, modify `BinaryHeap`
@@ -69,7 +78,8 @@
 
 function BinaryHeap () {
   this._heap = [];
-  // this compare function will result in a minHeap, use it to make comparisons between nodes in your solution
+  // this compare function will result in a minHeap, use it to make comparisons between nodes 
+  // in your solution
   this._compare = function (i, j) { return i < j };
 }
 
@@ -79,9 +89,25 @@ BinaryHeap.prototype.getRoot = function () {
 }
 
 BinaryHeap.prototype.insert = function (value) {
-  // TODO: Your code here
+  this._heap.push(value);
+  // compare to its parent
+  // while new < parent,
+  //  switch them
+  //  reset to switched node and its parent
+  let childIndex = this._heap.indexOf(value);
+  let parentIndex = Math.floor( (childIndex - 1) / 2 );
+  while (this._compare(childIndex, parentIndex)) {
+    let temp = this._heap[childIndex];
+    this._heap[childIndex] = this._heap[parentIndex];
+    this._heap[parentIndex] = temp;
+    childIndex = parentIndex;
+    parentIndex = Math.floor( (childIndex - 1) / 2 );
+  }
 }
 
 BinaryHeap.prototype.removeRoot = function () {
   // TODO: Your code here
+  // pop the last value
+  // set the 0th element to the popped value
+
 }
