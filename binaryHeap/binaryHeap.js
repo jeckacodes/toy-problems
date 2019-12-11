@@ -96,7 +96,7 @@ BinaryHeap.prototype.insert = function (value) {
   //  reset to switched node and its parent
   let childIndex = this._heap.indexOf(value);
   let parentIndex = Math.floor( (childIndex - 1) / 2 );
-  while (this._compare(childIndex, parentIndex)) {
+  while (this._compare(this._heap[childIndex], this._heap[parentIndex])) {
     let temp = this._heap[childIndex];
     this._heap[childIndex] = this._heap[parentIndex];
     this._heap[parentIndex] = temp;
@@ -106,8 +106,35 @@ BinaryHeap.prototype.insert = function (value) {
 }
 
 BinaryHeap.prototype.removeRoot = function () {
-  // TODO: Your code here
   // pop the last value
   // set the 0th element to the popped value
+  // compare the children of the 0th element: which is smaller
+  // take the smaller child and compare it to parent (0th element)
+  // if child < parent, 
+  //   switch them
+  //   make child a parent
+  //   make its children the children
+  debugger;
+  let pop = this._heap.pop();
+  this._heap[0] = pop;
+  let parentIndex = 0;
+  let childrenIndices = [parentIndex * 2 + 1, parentIndex * 2 + 2];
+  let childIndex = this._compare(this._heap[childrenIndices[0]], this._heap[childrenIndices[1]]) ? childrenIndices[0] : childrenIndices[1];
+  while (this._compare(this._heap[childIndex], this._heap[parentIndex])) {
+    let temp = this._heap[childIndex];
+    this._heap[childIndex] = this._heap[parentIndex];
+    this._heap[parentIndex] = temp;
+    parentIndex = childIndex;
+    childrenIndices = [parentIndex * 2 + 1, parentIndex * 2 + 2];
+    let childIndex = this._compare(childrenIndices[0], childrenIndices[1]) ? childrenIndices[0] : childrenIndices[1];
+  }
 
 }
+
+var binaryHeap = new BinaryHeap();
+binaryHeap.insert(6);
+binaryHeap.insert(4);
+binaryHeap.insert(9);
+binaryHeap.removeRoot();
+
+console.log(binaryHeap._heap.length) //.should.equal(2);
