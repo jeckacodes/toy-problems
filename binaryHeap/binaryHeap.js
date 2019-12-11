@@ -114,12 +114,11 @@ BinaryHeap.prototype.removeRoot = function () {
   //   switch them
   //   make child a parent
   //   make its children the children
-
+  let root = this._heap[0];
   let pop = this._heap.pop();
   this._heap[0] = pop;
   var parentIndex = 0;
   var childrenIndices = [parentIndex * 2 + 1, parentIndex * 2 + 2];
-  debugger;
   var childIndex;
   if (!this._heap[childrenIndices[1]]) {
     childIndex = childrenIndices[0];
@@ -134,5 +133,5 @@ BinaryHeap.prototype.removeRoot = function () {
     childrenIndices = [parentIndex * 2 + 1, parentIndex * 2 + 2];
     childIndex = this._compare(childrenIndices[0], childrenIndices[1]) ? childrenIndices[0] : childrenIndices[1];
   }
-
+  return root;
 }
