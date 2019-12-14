@@ -30,44 +30,7 @@
  * You will need a doubly-linked list (provided).
  */
 
-var LRUCache = function (limit) {
-  List.call(this);
-  // this.head = null;
-  // this.tail = null;
-  this.limit = limit;
-  this.storage = {};
-};
 
-var LRUCacheItem = function (val, key) {
-  ListNode.call(this);
-  // this.prev = prev || null;
-  // this.val = val;
-  // this.next = next || null;
-};
-
-LRUCache.prototype.size = function () {
-  return Object.keys(this.storage).length;
-};
-
-LRUCache.prototype.get = function (key) {
-  // look in storage to retrieve key/value pair
-  // put this node at the tail
-  var node = this.storage[key];
-  this.moveToEnd(node);
-  return node.val;
-};
-
-LRUCache.prototype.set = function (key, val) {
-  // if cache is at its limit
-  //  drop the head
-  // create a new node and add it to the tail 
-  // add the key/value pair to storage
-  if (this.size === this.limit) {
-    this.shift;
-  }
-  var newNode = this.push(val);
-  this.storage[key] = newNode;
-};
 
 
 
@@ -195,3 +158,59 @@ ListNode.prototype.delete = function () {
   if (this.next) { this.next.prev = this.prev; }
 };
 
+/////////////////////////////////////////////////////
+
+var LRUCache = function (limit) {
+  List.call(this);
+  // this.head = null;
+  // this.tail = null;
+  this.limit = limit;
+  this.storage = {};
+};
+
+var LRUCacheItem = function (val, key) {
+  ListNode.call(this);
+  // this.prev = prev || null;
+  // this.val = val;
+  // this.next = next || null;
+};
+
+LRUCache.prototype = Object.create(List.prototype);
+LRUCache.prototype.constructor = LRUCache;
+
+LRUCacheItem.prototype = Object.create(ListNode.prototype);
+LRUCacheItem.prototype.constructor = LRUCacheItem;
+
+LRUCache.prototype.size = function () {
+  return Object.keys(this.storage).length;
+};
+
+LRUCache.prototype.get = function (key) {
+  // look in storage to retrieve key/value pair
+  // put this node at the tail
+  var node = this.storage[key];
+  this.moveToEnd(node);
+  return node.val;
+};
+
+LRUCache.prototype.set = function (key, val) {
+  // if cache is at its limit
+  //  drop the head
+  // create a new node and add it to the tail 
+  // add the key/value pair to storage
+  debugger;
+  if (this.size() === this.limit) {
+    var oldNode = this.shift();
+    // delete this.storage[oldNode];  // fix this
+  }
+  var newNode = this.push(val);
+  this.storage[key] = newNode;
+};
+
+////////////////////////////////////////////////
+
+var cache = new LRUCache(2);
+for (var i = 0; i < 15; i++) {
+  cache.set(i, i);
+}
+console.log(cache.size())//.to.equal(10);
