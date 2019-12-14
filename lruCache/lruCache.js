@@ -31,18 +31,42 @@
  */
 
 var LRUCache = function (limit) {
+  List.call(this);
+  // this.head = null;
+  // this.tail = null;
+  this.limit = limit;
+  this.storage = {};
 };
 
 var LRUCacheItem = function (val, key) {
+  ListNode.call(this);
+  // this.prev = prev || null;
+  // this.val = val;
+  // this.next = next || null;
 };
 
 LRUCache.prototype.size = function () {
+  return Object.keys(this.storage).length;
 };
 
 LRUCache.prototype.get = function (key) {
+  // look in storage to retrieve key/value pair
+  // put this node at the tail
+  var node = this.storage[key];
+  this.moveToEnd(node);
+  return node.val;
 };
 
 LRUCache.prototype.set = function (key, val) {
+  // if cache is at its limit
+  //  drop the head
+  // create a new node and add it to the tail 
+  // add the key/value pair to storage
+  if (this.size === this.limit) {
+    this.shift;
+  }
+  var newNode = this.push(val);
+  this.storage[key] = newNode;
 };
 
 
