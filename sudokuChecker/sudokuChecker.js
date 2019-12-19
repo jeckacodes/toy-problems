@@ -64,7 +64,11 @@ function sudokuChecker(board) {
     grids[7] += rows[i].slice(3,6);
     grids[8] += rows[i].slice(6);
   }
-  return checkChars(rows) && checkChars(columns) && checkChars(grids);
+  if (checkChars(rows) && checkChars(columns) && checkChars(grids)) {
+    return 'solved';
+  } else {
+    return 'invalid';
+  };
 }
 
 var test = "735814296\n896275314\n214963857\n589427163\n362189745\n471356982\n923541678\n648792531\n157638429";
