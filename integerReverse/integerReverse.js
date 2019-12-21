@@ -14,6 +14,9 @@ function reverseInteger(number){
   // once the last digit is found, keep track of it
   // subtract it from num and divide num by 10
   // do this again
+  if (number === 0) {
+    return 0;
+  }
   digits = '';
   while (number > 0) {
     digits += number % 10;
