@@ -17,14 +17,14 @@ function reverseInteger(number){
   if (number === 0) {
     return 0;
   }
-  digits = '';
+  reverse = 0;
   while (number > 0) {
-    digits += number % 10;
-    number = number - (number % 10);
-    number = number/10;
-    console.log(digits);
+    digit = number % 10;
+    number = (number - digit)/10;
+    reverse *= 10;
+    reverse += digit;
   }
-  return parseInt(digits);
+  return reverse;
 }
 
 console.log(reverseInteger(5)===5); //should be 5
