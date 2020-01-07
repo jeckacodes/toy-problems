@@ -26,10 +26,10 @@ var spiralTraversal = function(matrix) {
     for (let i = 1; i < height; i++) {
       result.push(matrix[i][width - 1]);
     }
-    for (let i = width - 2; i >= 0; i--) {
+    for (let i = width - 2; i > 0; i--) {
       result.push(matrix[height - 1][i]);
     }
-    for (let i = height - 2; i > 0; i--) {
+    for (let i = height - 1; i > 0; i--) {
       result.push(matrix[i][0]);
     }
     matrix.pop();
@@ -46,18 +46,19 @@ var spiralTraversal = function(matrix) {
   return result;
 };
 
-console.log(spiralTraversal([
-  [1,2,3],
-  [4,5,6],
-  [7,8,9]
-]));
+// console.log(spiralTraversal([
+//   [1,2,3],
+//   [4,5,6],
+//   [7,8,9]
+// ]));
 console.log(spiralTraversal([
   [1,2,3,4],
   [5,6,7,8],
   [9,10,11,12]
 ]));
+console.log(spiralTraversal([[1, 2, 3, 4, 5, 6, 7]]))
 
-console.log(spiralTraversal([
-  [1,2],
-  [3,4]
-]));
+// console.log(spiralTraversal([
+//   [1,2],
+//   [3,4]
+// ]));
