@@ -45,6 +45,8 @@ Tree.prototype.getClosestCommonAncestor = function(child1, child2) {
     return child1;
   } else if (node.children.includes(child1) || node.children.includes(child2)) {
     return node;
+  } else if (!node.isDescendant(child1) || !node.isDescendant(child2)) {
+    return null;
   }
 
   function helper(root) {
