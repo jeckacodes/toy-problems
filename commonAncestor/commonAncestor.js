@@ -38,8 +38,25 @@ Tree.prototype.addChild = function(child) {
   *  3.) between my grandma and my grandma -> my grandma
   *  4.) between me and a potato -> null
   */
-Tree.prototype.getClosestCommonAncestor = function(target) {
-  //
+Tree.prototype.getClosestCommonAncestor = function(child1, child2) {
+  var node = this;
+  var ancestor = node;
+  if (child1 === child2) {
+    return child1;
+  } else if (node.children.includes(child1) || node.children.includes(child2)) {
+    return node;
+  }
+
+  function helper(root) {
+    for (let ele of root.children) {
+      if (ele.isDescendant(child1) && ele.isDescendant(child2)) {
+        ancestor = ele;
+        helper(ele);
+      }
+    }
+  }
+  helper(node);
+  return ancestor;
 };
 
 /**
