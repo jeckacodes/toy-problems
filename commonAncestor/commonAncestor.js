@@ -38,9 +38,8 @@ Tree.prototype.addChild = function(child) {
   *  3.) between my grandma and my grandma -> my grandma
   *  4.) between me and a potato -> null
   */
-Tree.prototype.getClosestCommonAncestor = function(/*...*/
-) {
-  // TODO: implement me!
+Tree.prototype.getClosestCommonAncestor = function(target) {
+  //
 };
 
 /**
@@ -51,9 +50,28 @@ Tree.prototype.getClosestCommonAncestor = function(/*...*/
   * 3.) me.getAncestorPath(me) -> [me]
   * 4.) grandma.getAncestorPath(H R Giger) -> null
   */
-Tree.prototype.getAncestorPath = function(/*...*/
-) {
-  // TODO: implement me!
+Tree.prototype.getAncestorPath = function(target) {
+  // start with THIS node and find a path to target
+  var node = this;
+  var result = [node];
+  debugger;
+  if (!this.isDescendant(target)) {
+    return null;
+  } else if (this === target) {
+    return [target];
+  }
+  function helper(node, target, result) {
+    for (let ele of node.children) {
+      result.push(ele);
+      if (ele === target) {
+        return result;
+      } else {
+        helper(ele, target, result)
+      }
+    }
+  }
+  helper(node, target, result);
+  return result;
 };
 
 /**
@@ -87,3 +105,13 @@ Tree.prototype.removeChild = function(child) {
     throw new Error('That node is not an immediate child of this tree');
   }
 };
+
+var grandma = new Tree();
+var mom = new Tree();
+grandma.addChild(mom);
+var me = new Tree();
+var potato = new Tree();
+mom.addChild(me);
+console.log(grandma.getAncestorPath(me)); // => [grandma, mom, me]
+console.log(grandma.getAncestorPath(potato)); // => null
+console.log(grandma.getClosestCommonAncestor(grandma)); // => grandma
