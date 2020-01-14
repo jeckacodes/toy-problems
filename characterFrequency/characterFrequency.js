@@ -37,5 +37,65 @@
 
 
 var characterFrequency = function(string) {
-  return result;
+  // count character frequency
+  var counted = count(string);
+  console.log(counted)
+  // sort by character ascending
+  var sortedChar = sortChar(counted);
+  console.log(sortedChar)
+  // sort by frequency descending
+  var sortedFreq = sortFreq(sortedChar);
+  console.log(sortedFreq)
+  return sortedFreq;
 };
+
+function count(string) {
+  var dict = {};
+  for (let char of string) {
+    dict[char] = dict.hasOwnProperty(char) ? dict[char] + 1 : 1;
+  }
+  var result = [];
+  for (let pair in dict) {
+    result.push([pair, dict[pair]]);
+  }
+  return result;
+}
+
+function sortFreq(array) {
+  var quicksort = function(arr) {
+    debugger;
+    if (arr.length <= 1) {
+      return arr;
+    }
+    var pivot = arr[0];
+    var left = arr.slice(1).filter((ele) => {
+      return ele[1] >= pivot[1];
+    });
+    var right = arr.slice(1).filter((ele) => {
+      return ele[1] < pivot[1];
+    });
+    return quicksort(left).concat( [pivot], quicksort(right));
+  }
+  return quicksort(array);
+}
+
+function sortChar(array) {
+  var quicksort = function(arr) {
+    if (arr.length <= 1) {
+      return arr;
+    }
+    var pivot = arr[0];
+    var left = arr.slice(1).filter((ele) => {
+      return ele[0] >= pivot[0];
+    });
+    var right = arr.slice(1).filter((ele) => {
+      return ele[0] < pivot[0];
+    });
+    return quicksort(left).concat( [pivot], quicksort(right));
+  }
+  return quicksort(array);
+}
+
+console.log(characterFrequency('paella'))
+console.log(characterFrequency('mississippi'))
+console.log(characterFrequency('mmmaaaiiibbb'))
