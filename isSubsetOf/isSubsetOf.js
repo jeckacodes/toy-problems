@@ -22,5 +22,16 @@
 */
 
 Array.prototype.isSubsetOf = function (arr) {
-  // your code here
+  var small = this;
+  for (ele of small) {
+    if (!arr.includes(ele)) {
+      return false;
+    }
+  }
+  return true;
 };
+
+var a = ['commit','push']
+console.log(a.isSubsetOf(['commit','rebase','push','blame'])) // true
+var b = ['merge','reset','reset']
+console.log(b.isSubsetOf(['reset','merge','add','commit'])) // true 
