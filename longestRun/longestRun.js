@@ -14,8 +14,49 @@
  */
 
 var longestRun = function (string) {
-  // TODO: Your code here!
+  if (string.length === 0) {
+    return null;
+  }
+  debugger;
+  var pointerA = 0;
+  var pointerB = 0;
+  var tempA, tempB;
+  // find the start of a run
+  function findStart(string, index) {
+    if (string.length === index) {
+      return [pointerA, pointerB];
+    }
+    for (let i = index; i < string.length; i++) {
+      if (string[i] === string[i+1]) {
+        tempA = i;
+        break;
+      }
+    }
+    return findEnd(string, tempA);
+  }
+  // find the end of a run
+  function findEnd(string, index) {
+    for (let j = index; j < string.length; j++) {
+      if (string[j] != string[j+1]) {
+        tempB = j;
+        if (tempB - tempA > pointerB - pointerA) {
+          pointerA = tempA;
+          pointerB = tempB;
+        }
+        break;
+      }
+    }
+    return findStart(string, tempB+1);
+  }
+  // calculate its length
+  // look for another run
+  return findStart(string, 0);
 };
+
+console.log(longestRun("abbbcc")) // [1, 3]
+// console.log(longestRun("aabbc"))  // [0, 1]
+console.log(longestRun("abcd"))   // [0, 0]
+console.log(longestRun(""))       // null
 
 // If you need a random string generator, use this!
 // (you wont need this function for your solution but it may help with testing)
