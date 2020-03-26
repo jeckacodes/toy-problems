@@ -54,7 +54,7 @@ class Range {
 };
 
 Range.prototype.size = function () {
-    return (this.end - this.start) / this.step + 1;
+    return Math.floor((this.end - this.start) / this.step + 1);
 };
 
 Range.prototype.each = function (callback) {
@@ -87,13 +87,9 @@ Range.prototype.includes = function (val) {
     }
 };
 
-// var range = new Range(1);
-
-var evenNumbers = new Range(8,2,2); // A range with the even numbers 2, 4, 6, and 8.
-evenNumbers.each(function(val){
-  console.log(val+"!");
-});
-console.log("Who do we appreciate!?");
-console.log(evenNumbers.size()) //should be 4
-console.log(evenNumbers.includes(2)) //should be true, 
-console.log(evenNumbers.includes(3)) //should be false
+var countdown = new Range(10, 0, -1);
+    var elements = [];
+    countdown.each(function (val) {
+      elements.push(val);
+    });
+console.log(elements) // .should.eql([10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]);

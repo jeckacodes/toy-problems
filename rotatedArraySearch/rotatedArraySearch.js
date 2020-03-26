@@ -16,6 +16,9 @@
  */
 
 var rotatedArraySearch = function (rotated, target) {
-  // Your code here:
+  // for a sorted array, we could just start at the midpoint and search
+  // halves. why can't we do that here? because you don't neecessarily know 
+  // which direction to go. so just add a condition that compares to the 
+  // first and last values
 };
 

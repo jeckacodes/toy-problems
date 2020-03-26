@@ -39,7 +39,7 @@
 
 
 var asyncMap = function(tasks, callback) {
-    // debugger;
+    debugger;
     tasks.reduce((prev, curr) => {
         return prev.then(curr);
     }, Promise.resolve(tasks[0]))
